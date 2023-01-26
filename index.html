@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="scrip.js"></script>
+    <title>EncriptadorALURA</title>
+  </head>
+  <body>
+    <header>
+        <div class="container-tittle">
+            <img class="logoimg" src="imagenes/Logo.png" alt="Logo de Alura"/>
+            <h1 class="title">Encriptador Alura</h1>;
+        </div>
+    </header>
+    <main>
+        <section class="container-left">
+            <textarea id="textareaTexto" type="text" rows="15" cols="30" placeholder="Ingrese el texto aquí"></textarea>
+            <div class="condicion">
+              <p>Solo letras minúsculas y sin acentos.</p>
+            </div>
+            <div class="buttons">
+                <button type="button" id="btnEncriptar" onclick="encriptar()">Encriptar</button>
+                <button type="button" id="btnDesencriptar" onclick="desencriptar()">Desencriptar</button>
+            </div>
+        </section>
+        <section class="container-right">
+            <textarea id="texto2" type="text" readonly rows="20" cols="30"></textarea>
+            <h1 id="texto">Ningún mensaje fue encontrado</h1>
+            <h2 id="descripcion">Ingrese el texto que desee encriptar o desencriptar.</h2>
+            <button type="button" id="copiar" name="button" onclick="copy()">Copiar</button>
+        </section>
+    </main>
+    <footer>
+        <img src="imagenes/logoLinkedin.png" href="https://www.linkedin.com/in/gonzalo-villalobo-778a79243/">
+        <a href="https://www.linkedin.com/in/gonzalo-villalobo-778a79243/"> Made by Gonzalo Villalobo </a>
+    </footer>
+  </body>
+</html>
