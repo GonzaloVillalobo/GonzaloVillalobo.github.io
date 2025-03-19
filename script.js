@@ -1,104 +1,94 @@
-// Array para almacenar los nombres
-let nombres = [];
+// Lista para guardar los nombres
+var nombres = [];
 
-// Elementos del DOM
-const nombreInput = document.getElementById('nombreInput');
-const agregarBtn = document.getElementById('agregarBtn');
-const sortearBtn = document.getElementById('sortearBtn');
-const nombresContainer = document.getElementById('nombresContainer');
-const contador = document.getElementById('contador');
-const resultado = document.getElementById('resultado');
-const ganador = document.getElementById('ganador');
-
-// Función para agregar un nombre
-function agregarNombre() {
-    const nombre = nombreInput.value.trim();
+// Cuando la página carga
+window.onload = function() {
+    // Obtener elementos del HTML
+    var nombreInput = document.getElementById("nombreInput");
+    var agregarBtn = document.getElementById("agregarBtn");
+    var sortearBtn = document.getElementById("sortearBtn");
+    var listaNombres = document.getElementById("listaNombres");
+    var contador = document.getElementById("contador");
+    var resultado = document.getElementById("resultado");
+    var ganador = document.getElementById("ganador");
     
-    if (nombre !== '') {
-        // Agregar el nombre al array
-        nombres.push(nombre);
+    // Función para agregar un nombre
+    function agregarNombre() {
+        var nombre = nombreInput.value.trim();
         
-        // Crear elemento HTML para el nombre
-        const nameItem = document.createElement('div');
-        nameItem.className = 'name-item';
-        
-        // Agregar el texto del nombre
-        const nameText = document.createElement('span');
-        nameText.textContent = nombre;
-        nameItem.appendChild(nameText);
-        
-        // Botón para eliminar
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'delete-btn';
-        deleteBtn.textContent = 'X';
-        deleteBtn.onclick = function() {
-            // Eliminar del array
-            const index = nombres.indexOf(nombre);
-            if (index > -1) {
-                nombres.splice(index, 1);
-            }
+        if (nombre !== "") {
+            // Agregar a la lista
+            nombres.push(nombre);
             
-            // Eliminar del DOM
-            nombresContainer.removeChild(nameItem);
+            // Crear elemento para mostrar
+            var div = document.createElement("div");
+            div.className = "nombreItem";
+            
+            // Texto del nombre
+            var textoNombre = document.createElement("span");
+            textoNombre.textContent = nombre;
+            div.appendChild(textoNombre);
+            
+            // Botón para eliminar
+            var botonEliminar = document.createElement("button");
+            botonEliminar.className = "botonEliminar";
+            botonEliminar.textContent = "X";
+            
+            // Al hacer clic en eliminar
+            botonEliminar.onclick = function() {
+                // Buscar posición en el array
+                var indice = nombres.indexOf(nombre);
+                if (indice > -1) {
+                    nombres.splice(indice, 1);
+                }
+                
+                // Quitar de la lista visual
+                listaNombres.removeChild(div);
+                
+                // Actualizar contador
+                contador.textContent = nombres.length;
+            };
+            
+            div.appendChild(botonEliminar);
+            
+            // Agregar a la lista visual
+            listaNombres.appendChild(div);
+            
+            // Limpiar input
+            nombreInput.value = "";
             
             // Actualizar contador
-            actualizarContador();
-        };
-        
-        nameItem.appendChild(deleteBtn);
-        
-        // Agregar al contenedor
-        nombresContainer.appendChild(nameItem);
-        
-        // Limpiar el input
-        nombreInput.value = '';
-        
-        // Actualizar contador
-        actualizarContador();
-        
-        // Dar foco al input
-        nombreInput.focus();
+            contador.textContent = nombres.length;
+        }
     }
-}
-
-// Actualizar el contador de participantes
-function actualizarContador() {
-    contador.textContent = nombres.length;
-}
-
-// Función para realizar el sorteo
-function realizarSorteo() {
-    if (nombres.length > 0) {
-        // Ocultar resultado anterior
-        resultado.style.display = 'none';
-        
-        // Generar número aleatorio
-        const randomIndex = Math.floor(Math.random() * nombres.length);
-        
-        // Obtener el nombre ganador
-        const nombreGanador = nombres[randomIndex];
-        
-        // Mostrar el resultado
-        ganador.textContent = nombreGanador;
-        resultado.style.display = 'block';
-        
-        // Aplicar animación
-        resultado.classList.remove('highlight');
-        setTimeout(() => {
-            resultado.classList.add('highlight');
-        }, 10);
-    } else {
-        alert('Debes agregar al menos un nombre para realizar el sorteo');
+    
+    // Función para sortear
+    function realizarSorteo() {
+        if (nombres.length > 0) {
+            // Elegir un número al azar
+            var indiceGanador = Math.floor(Math.random() * nombres.length);
+            
+            // Obtener el nombre ganador
+            var nombreGanador = nombres[indiceGanador];
+            
+            // Mostrar resultado
+            ganador.textContent = nombreGanador;
+            resultado.style.display = "block";
+        } else {
+            alert("Debes agregar al menos un nombre para sortear");
+        }
     }
-}
-
-// Event listeners
-agregarBtn.addEventListener('click', agregarNombre);
-
-nombreInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        agregarNombre();
-    }
-});
-
-sortearBtn.addEventListener('click', realizarSorteo);
+    
+    // Botón agregar
+    agregarBtn.addEventListener("click", agregarNombre);
+    
+    // Presionar Enter en el input
+    nombreInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            agregarNombre();
+        }
+    });
+    
+    // Botón sortear
+    sortearBtn.addEventListener("click", realizarSorteo);
+};

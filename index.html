@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteo de Nombres</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sorteo Simple</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="contenedor">
         <h1>Sorteo de Nombres</h1>
         
-        <div class="input-group">
-            <input type="text" id="nombreInput" placeholder="Ingresa un nombre" autocomplete="off">
+        <div>
+            <input type="text" id="nombreInput" placeholder="Ingresa un nombre">
             <button id="agregarBtn">Agregar</button>
         </div>
         
-        <div class="counter">Participantes: <span id="contador">0</span></div>
+        <p>Participantes: <span id="contador">0</span></p>
         
-        <div class="names-container" id="nombresContainer">
-            <!-- Los nombres se agregarán aquí dinámicamente -->
+        <div id="listaNombres">
+            <!-- Aquí se agregarán los nombres -->
         </div>
         
         <button id="sortearBtn">Realizar Sorteo</button>
         
-        <div class="result" id="resultado">
-            El ganador es: <span class="winner" id="ganador"></span>
+        <div id="resultado" style="display: none;">
+            <p>El ganador es: <span id="ganador"></span></p>
         </div>
     </div>
 
